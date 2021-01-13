@@ -5,7 +5,7 @@ const parse = require('./parser')
 const dataPath = 'src/margin-stocks.json'
 
 /**
- * Store data into the json file
+ * Store data into the json file.
  *
  * @param {Object} Object of tickers objects
  * @returns {Promise<date>} Last time updated date object
@@ -15,7 +15,7 @@ const store = (data) => {
 }
 
 /**
- * Create stocks data file or update if it's already exists
+ * Create stocks data file or update if it's already exists.
  *
  * @async
  * @returns {Promise<date>} Last time updated date object
@@ -43,7 +43,19 @@ const sync = async () => {
     })
 }
 
+/**
+ * Get full stock data from JSON file by ticker name.
+ *
+ * @param {String} Ticker string
+ * @returns {Object} Full ticker data object
+ */
+const getDataByTicker = (ticker) => {
+    dataArr = JSON.parse(fs.readFileSync(dataPath))  
+    return dataArr.find(x => x.ticker.toLowerCase() === ticker.toLowerCase())
+}
+
 module.exports = {
     sync,
-    createAndUpdate
+    createAndUpdate,
+    getDataByTicker
 }
