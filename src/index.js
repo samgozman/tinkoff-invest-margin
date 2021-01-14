@@ -1,31 +1,28 @@
 const express = require('express')
-
+const path  = require('path')
 const {
     sync,
-    createAndUpdate,
-    getDataByTicker
+    createAndUpdate
 } = require('./utils/data')
+const tickerRouter = require('./routers/ticker')
+const webRouter = require('./routers/web')
 
 const app = express()
 const port = process.env.PORT || 3000
+const public_dir = path.join(__dirname, '../public')
 let lastTimeUpdated
 
-app.get('/ticker/:ticker', async (req, res) => {
-    const _ticker = req.params.ticker
-    if(typeof(_ticker) != 'string') return res.status(400).send()
+// Option to hide file extension from URL
+const options = {
+    extensions: ['html']
+}
 
-    try {
-        const tickerData = await getDataByTicker(_ticker)
-        if (!tickerData) {
-            return res.status(404).send({
-                error: 'Тикер не найден в перечне ликвидных бумаг Тинькофф!'
-            })
-        }
-        res.send(tickerData)
-    } catch (err) {
-        res.status(500).send()
-    }
-})
+// Setup static directory to serve
+app.use(express.static(public_dir, options))
+
+// Register routers
+app.use(tickerRouter)
+app.use(webRouter)
 
 app.listen(port, () => {
     console.log('tinkoff-invest-margin is up on port: ' + port)
