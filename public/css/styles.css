@@ -1,0 +1,9 @@
+body {
+    padding: 10vh 0vh;
+}
+button {
+    background-color: #ffdd2d;
+    border: 0.1rem solid #ffdd2d;
+    color: #333;
+    float: right;
+}

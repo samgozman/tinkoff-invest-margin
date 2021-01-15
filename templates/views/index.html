@@ -4,32 +4,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
+    <!-- CSS Reset -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
+    <!-- Milligram CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.css">
+    <!-- Styles -->
+    <link rel="stylesheet" href="/css/styles.css">
     <title>Tinkoff invest margin</title>
 </head>
 
 <body>
-    <div class="main">
-        <form action="">
-            <input id="search" type="text" placeholder="Тикер">
-            <button type="submit">Найти</button>
-        </form>
-        <p id="error-message"></p>
-        <table>
-            <thead>
-                <tr>
-                    <th>Тикер</th>
-                    <th>Имя</th>
-                    <th>ISIN</th>
-                    <th>Шорт</th>
-                    <th>Шорт риск</th>
-                    <th>Лонг риск</th>
-                </tr>
-            </thead>
-            <tbody>
+    <div class="container">
+        <div class="row">
+            <div class="column column-60 column-offset-20">
+                <form action="">
+                    <input id="search" type="text" placeholder="Тикер">
+                    <button type="submit">Найти</button>
+                </form>
+                <p id="error-message"></p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Тикер</th>
+                            <th>Имя</th>
+                            <th>ISIN</th>
+                            <th>Шорт</th>
+                            <th>Шорт риск</th>
+                            <th>Лонг риск</th>
+                        </tr>
+                    </thead>
+                    <tbody>
 
-            </tbody>
+                    </tbody>
 
-        </table>
+                </table>
+            </div>
+        </div>
+
     </div>
     <script src="./js/app.js"></script>
 </body>
