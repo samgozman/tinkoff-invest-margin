@@ -28,7 +28,7 @@ const parse = async () => {
          *   longRisk: <float>,
          *   shortRisk: <float> }
          */
-        let tableObjArray = [] = Array.prototype.map.call(table, (tr) => {
+        let tableObjArray = Array.prototype.map.call(table, (tr) => {
             return {
                 ticker: $(tr).find('td:nth-of-type(1) a span div div:nth-of-type(2)').text().split(',')[0],
                 name: $(tr).find('td:nth-of-type(1) a span div div:nth-of-type(1)').text(),

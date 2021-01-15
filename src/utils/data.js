@@ -49,9 +49,14 @@ const sync = async () => {
  * @param {String} Ticker string
  * @returns {Object} Full ticker data object
  */
-const getDataByTicker = (ticker) => {
-    dataArr = JSON.parse(fs.readFileSync(dataPath))  
-    return dataArr.find(x => x.ticker.toLowerCase() === ticker.toLowerCase())
+const getDataByTicker = (tickersArr) => {
+    dataArr = JSON.parse(fs.readFileSync(dataPath))
+    result = []  
+    tickersArr.forEach(element => {
+        result.push(dataArr.filter(x => x.ticker.toLowerCase() === element.toLowerCase())[0])
+    })
+    // console.log(result)
+    return result
 }
 
 module.exports = {
