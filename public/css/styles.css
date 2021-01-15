@@ -13,6 +13,10 @@ button {
     cursor: pointer;
 }
 
+.overflow {
+    overflow-x: auto;
+}
+
 .octocat {
     border: 0;
     color: #f4f5f6;
