@@ -47,15 +47,14 @@ const sync = async () => {
  * Get full stock data from JSON file by ticker name.
  *
  * @param {String} Ticker string
- * @returns {Object} Full ticker data object
+ * @returns {Array<Object>} Array of ticker data objects
  */
 const getDataByTicker = (tickersArr) => {
     dataArr = JSON.parse(fs.readFileSync(dataPath))
-    result = []  
+    result = []
     tickersArr.forEach(element => {
         result.push(dataArr.filter(x => x.ticker.toLowerCase() === element.toLowerCase())[0])
     })
-    // console.log(result)
     return result
 }
 
