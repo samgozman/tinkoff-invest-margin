@@ -10,9 +10,9 @@ router.get('/ticker/:ticker', async (req, res) => {
     const tickersArr = decodeURI(req.params.ticker).split(' ').filter(item => item)
     try {
         const tickerData = await getDataByTicker(tickersArr)
-        if (!tickerData || tickerData.length === 0) {
+        if (!tickerData || tickerData.length === 0 || !tickerData[0]) {
             return res.status(404).send({
-                error: 'Тикер не найден в перечне ликвидных бумаг Тинькофф!'
+                error: 'Один из тикеров не найден в перечне ликвидных бумаг Тинькофф!'
             })
         }
         res.send(tickerData)

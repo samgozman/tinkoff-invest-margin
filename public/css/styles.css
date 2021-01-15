@@ -1,9 +1,31 @@
 body {
-    padding: 10vh 0vh;
+    padding: 5vh 0vh;
 }
+
 button {
     background-color: #ffdd2d;
     border: 0.1rem solid #ffdd2d;
     color: #333;
     float: right;
+}
+
+#tickers-highlight {
+    cursor: pointer;
+}
+
+.octocat {
+    border: 0;
+    color: #f4f5f6;
+    fill: #333;
+    height: 5.2rem;
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 5.2rem;
+    z-index: 2;
+}
+
+.octocat .octocat-arm,
+.octocat .octocat-body {
+    fill: #f4f5f6;
 }

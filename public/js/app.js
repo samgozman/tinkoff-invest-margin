@@ -1,4 +1,5 @@
 const searchForm = document.querySelector('form')
+const tickersHighlight = document.querySelector('#tickers-highlight')
 const searchTicker = document.querySelector('#search')
 const errorMessage = document.querySelector('#error-message')
 
@@ -13,6 +14,7 @@ searchForm.addEventListener('submit', (e) => {
             if (data.error) {
                 return errorMessage.textContent = data.error
             }
+            errorMessage.textContent = ''
             let tbody = document.querySelector('tbody')
             // Clear table body before inserting new rows
             // Generate table view
@@ -29,4 +31,9 @@ searchForm.addEventListener('submit', (e) => {
         })
     })
 
+})
+
+// Insert example
+tickersHighlight.addEventListener('click', () => {
+     searchTicker.value = tickersHighlight.innerHTML
 })
