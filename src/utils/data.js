@@ -8,7 +8,7 @@ const dataPath = 'src/margin-stocks.json'
  * Store data into the json file.
  *
  * @param {Object} Object of tickers objects
- * @returns {Promise<date>} Last time updated date object
+ * @returns {Date} Last time updated date object
  */
 const store = (data) => {
     fs.writeFileSync(dataPath, JSON.stringify(data))
@@ -18,7 +18,7 @@ const store = (data) => {
  * Create stocks data file or update if it's already exists.
  *
  * @async
- * @returns {Promise<date>} Last time updated date object
+ * @returns {Date} Last time updated date object
  */
 const createAndUpdate = async () => {
     return await parse().then((table) => {
@@ -47,7 +47,7 @@ const sync = async () => {
  * Get full stock data from JSON file by ticker name.
  *
  * @param {String} Ticker string
- * @returns {Array<Object>} Array of ticker data objects
+ * @returns {Object} Array of ticker data objects
  */
 const getDataByTicker = (tickersArr) => {
     dataArr = JSON.parse(fs.readFileSync(dataPath))

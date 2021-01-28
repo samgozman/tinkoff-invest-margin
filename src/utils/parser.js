@@ -5,7 +5,7 @@ const cheerio = require('cheerio')
  * Parse tinkoff margin equities page and collect data in JSON format
  *
  * @async
- * @returns {Promise<object>} Object of tickers objects
+ * @returns {Object} Object of tickers objects
  */
 const parse = async () => {
     try {
