@@ -45,7 +45,8 @@ const sync = async () => {
 }
 
 /**
- * Get full stock data from JSON file by ticker name.
+ * Get full stock data from JSON file by ticker name. (max 10 tickers per request)
+ * Append live shortsqueeze data to the result.
  *
  * @param {String} Ticker string
  * @returns {Object} Array of ticker data objects
@@ -53,6 +54,10 @@ const sync = async () => {
 const getDataByTicker = async (tickersArr) => {
     dataArr = JSON.parse(fs.readFileSync(dataPath))
     result = []
+
+    // Set limit of tickers per request
+    tickersArr = tickersArr.slice(0, 10)
+
     for (const element of tickersArr) {
         let tickerData = dataArr.filter(x => x.ticker.toLowerCase() === element.toLowerCase())[0]
         const shortsData = await shortsqueeze(tickerData.ticker),
@@ -63,7 +68,7 @@ const getDataByTicker = async (tickersArr) => {
         tickerData.shortInterestRatioDaysToCover = shortInterestRatioDaysToCover || 'Нет данных'
         result.push(tickerData)
     }
-    
+
     return result
 }
 
