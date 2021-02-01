@@ -8,6 +8,12 @@ searchForm.addEventListener('submit', (e) => {
     e.preventDefault()
     const ticker = encodeURI(searchTicker.value)
 
+    if (ticker) {
+        errorMessage.textContent = 'Загрузка..'
+    } else {
+        errorMessage.textContent = 'Введите тикер, например SPCE'
+    }
+
     // client-side request
     fetch('/ticker/' + ticker).then((response) => {
         response.json().then((data) => {
@@ -35,5 +41,5 @@ searchForm.addEventListener('submit', (e) => {
 
 // Insert example
 tickersHighlight.addEventListener('click', () => {
-     searchTicker.value = tickersHighlight.innerHTML
+    searchTicker.value = tickersHighlight.innerHTML
 })

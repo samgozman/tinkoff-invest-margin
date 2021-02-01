@@ -1,5 +1,6 @@
 const fs = require('fs')
 const cron = require('node-cron')
+const shortsqueeze = require('shortsqueeze')
 const parse = require('./parser')
 
 const dataPath = 'src/margin-stocks.json'
@@ -49,12 +50,20 @@ const sync = async () => {
  * @param {String} Ticker string
  * @returns {Object} Array of ticker data objects
  */
-const getDataByTicker = (tickersArr) => {
+const getDataByTicker = async (tickersArr) => {
     dataArr = JSON.parse(fs.readFileSync(dataPath))
     result = []
-    tickersArr.forEach(element => {
-        result.push(dataArr.filter(x => x.ticker.toLowerCase() === element.toLowerCase())[0])
-    })
+    for (const element of tickersArr) {
+        let tickerData = dataArr.filter(x => x.ticker.toLowerCase() === element.toLowerCase())[0]
+        const shortsData = await shortsqueeze(tickerData.ticker),
+            shortPercentOfFloat = shortsData.shortPercentOfFloat,
+            shortInterestRatioDaysToCover = shortsData.shortInterestRatioDaysToCover
+        // Append shorts data from ShortSqueeze.com
+        tickerData.shortPercentOfFloat = shortPercentOfFloat || 'Нет данных'
+        tickerData.shortInterestRatioDaysToCover = shortInterestRatioDaysToCover || 'Нет данных'
+        result.push(tickerData)
+    }
+    
     return result
 }
 
